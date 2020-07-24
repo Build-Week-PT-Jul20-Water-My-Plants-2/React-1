@@ -2,20 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-// import { FacebookLoginButton } from 'react-social-login-buttons';
 import * as yup from 'yup';
+// import { FacebookLoginButton } from 'react-social-login-buttons';
 
-const defaultFormState = {
-    name: '',
-    phone:'',
-    email: '',
-    password: '',
-}
-
-const defaultErrorState = {
-    name: '',
-    email:''
-}
 
 const schema = yup.object().shape({
     name: yup.string()
@@ -25,6 +14,18 @@ const schema = yup.object().shape({
         .required('Please enter a phone number.')
         .matches(/^[0-9]{10}$/, 'Please enter a valid phone number.')
 })
+
+const defaultFormState = {
+    name: '',
+    phone:'',
+    password: '',
+}
+
+const defaultErrorState = {
+    name: '',
+    phone:''
+}
+
 
 function SignUpForm() {
 
@@ -45,11 +46,10 @@ function SignUpForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log('form Submitted');
-        console.log('fromstate:', formState);
+        console.log('form Submitted:', formState);
         axios.post("https://reqres.in/api/users", formState)
             .then(res => {
-                console.log(res.data);
+                console.log('res:', res.data);
                 setFormState(defaultFormState);
             })
             .catch(err => console.log(err));
@@ -59,9 +59,11 @@ function SignUpForm() {
             ...formState,
             [e.target.name]: e.target.value
         })
+        if (e.target.name === 'name' || e.target.name === 'phone') {
+            validate(e);
+        }
     }
 
-    console.log(formState)
 
     return (
         <formContainer>
@@ -70,16 +72,16 @@ function SignUpForm() {
             </header>
             <Form className="login-form" onSubmit={handleSubmit}>
                 <FormGroup >
-                    <Label>Name </Label>
+                    <Label>Username </Label>
                     <Input type='text' name='name' value={formState.name} onChange={handleChange}></Input>
-                    <Label>Phone</Label>
+                    {errors.name.length > 0 && <p style={{ color: 'red' }}>{errors.name}</p>}
+                    <Label>Phone Number</Label>
                     <Input type='phone' name='phone' value={formState.phone} onChange={handleChange}></Input>
-                    <Label>Email</Label>
-                    <Input type='email' name='email' value={formState.email} onChange={handleChange}></Input>
+                    {errors.phone.length > 0 && <p style={{ color: 'red' }}>{errors.phone}</p>}
                     <Label>Password</Label>
                     <Input type='password' name='password' value={formState.password} onChange={handleChange}></Input>
                 </FormGroup>
-                <Button className='btn-lg btn-block' type='submit' name='submit' color="success">
+                <Button disabled={isDisabled} className='btn-lg btn-block' type='submit' name='submit' color="success">
                     Submit
                 </Button>
             <div className='text-center pt-3'>
