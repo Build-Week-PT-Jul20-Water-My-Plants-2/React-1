@@ -1,11 +1,33 @@
+.App{
+    background-image: url('https://images.unsplash.com/photo-1497990571654-77aa8ec36038?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2534&q=80');
+    height: 100vh;
+    background-size: cover;
+}
+
+h1{
+    padding-top: 15%;
+}
+
 .login-form {
     width: 100%;
     max-width: 330px;
-    padding: 15px;
     margin: auto;
-    height: 100%;
-}
+    background-color: #FFF;
 
-Label{
-    margin-top: 12px;
+    box-shadow: 0 8px 6px -6px #262730;
+    padding:2rem;
+    border-radius: 8px;
+    color: #262730;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+        0 12.5px 10px rgba(0, 0, 0, 0.035),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+        0 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
+    label{
+        margin: .75rem 0 0;
+    }
