@@ -6,9 +6,10 @@
 
 h1{
     padding-top: 15%;
+    font-weight: 400;
 }
 
-.login-form {
+.login-form, .signup-form {
     width: 100%;
     max-width: 330px;
     margin: auto;

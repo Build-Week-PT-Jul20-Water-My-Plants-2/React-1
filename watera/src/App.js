@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 // import NavBar from './components/NavBar'
 import SignUpForm from './components/SignUpForm'
+import LoginForm from './components/LoginForm';
 
 
 function App() {
@@ -10,13 +11,13 @@ function App() {
     <div className="App">
       {/* <NavBar /> */}
       <Switch>
-        <Route path='/form'>
+        <Route path='/sign-up'>
 
           <SignUpForm />
         </Route>
-        {/* <Route exact path='/'>
-          <HomePage  />
-        </Route> */}
+        <Route path='/login'>
+          <LoginForm  />
+        </Route>
       </Switch>
     </div>
   );
